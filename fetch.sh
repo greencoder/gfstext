@@ -18,11 +18,15 @@ if [ -z $latest ]; then
   exit "No run found"
 else
   echo "Latest file is $latest"
+  echo "-----------------------------"
 fi
 
 # Extract the date and the init from the latest file name
 run="${latest:8:2}z"
 date=${latest:4:8}
+
+# Make sure we have an "output" directory to put our files
+mkdir -p output
 
 # We want every 6 hour run out to 240 hours
 for idx in {0..40}
@@ -49,8 +53,8 @@ do
   
   # Turn the file into a CSV
   wgrib2 output/$filename -csv output/$filename.csv > /dev/null
-  #rm $filename
-  
+  rm output/$filename
+
   # Sleep between requests
   sleep 1
 

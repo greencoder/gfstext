@@ -1,0 +1,5 @@
+*.pyc
+output/*
+junk/*
+sample_data/*
+docs/*
